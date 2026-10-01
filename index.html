@@ -19,7 +19,7 @@ a.btn{display:inline-block;background:#15171A;color:#fff;text-decoration:none;pa
 <p class="foot"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · Nicholas Santiago · Licensed Real Estate Salesperson · eXp Realty · Alabama · Equal Housing Opportunity</p>
 <script>
 (function(){
-  var KEY = "aw6utd36au84nxin";
+  var KEY = (new URLSearchParams(location.search).get("env") === "sandbox") ? "sbawf9gnk7bqri229m" : "aw6utd36au84nxin";
   var REDIRECT = "https://newhomesofbirmingham-bot.github.io/nhb-media/";
   var SCOPES = "user.info.basic,user.info.stats,video.list,video.upload,video.publish";
   var q = new URLSearchParams(location.search), st = document.getElementById("status");
@@ -28,7 +28,7 @@ a.btn{display:inline-block;background:#15171A;color:#fff;text-decoration:none;pa
     st.innerHTML = "<strong>TikTok authorization received.</strong> Scopes granted: <code>" + (q.get("scopes") || "") + "</code>. The machine will exchange this code for tokens on the operator's computer. You can close this tab.";
   } else if (q.get("error")) {
     st.innerHTML = "<strong>TikTok returned an error:</strong> <code>" + q.get("error") + "</code> " + (q.get("error_description") || "");
-  } else { st.innerHTML = "Status: <strong>not connected in this browser</strong>. Click Connect TikTok below."; }
+  } else { st.innerHTML = "Status: <strong>not connected in this browser</strong>. Click Connect TikTok below." + (KEY.indexOf("sb") === 0 ? " <em>(sandbox environment)</em>" : ""); }
   var state = Math.random().toString(36).slice(2, 14);
   document.getElementById("connect").href = "https://www.tiktok.com/v2/auth/authorize/?client_key=" + KEY + "&response_type=code&scope=" + encodeURIComponent(SCOPES) + "&redirect_uri=" + encodeURIComponent(REDIRECT) + "&state=" + state;
 })();
