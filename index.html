@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NHB ContentMachine · Connect</title>
+<style>body{font-family:-apple-system,Helvetica,Arial,sans-serif;max-width:620px;margin:48px auto;padding:0 20px;line-height:1.5;color:#15171A;background:#F3F4F1}
+h1{font-size:30px;margin:0 0 6px}.sub{color:#555;margin:0 0 24px}.card{background:#fff;border:1px solid #D5D8D2;border-radius:10px;padding:22px 24px;margin:0 0 16px}
+a.btn{display:inline-block;background:#15171A;color:#fff;text-decoration:none;padding:12px 18px;border-radius:8px;font-weight:600}
+.ok{background:#DFEEE4;color:#2E7D4F;padding:12px 14px;border-radius:8px}code{background:#F3F4F1;padding:1px 5px;border-radius:3px;font-size:13px}
+.foot{font-size:12px;color:#666;margin-top:28px}</style></head><body>
+<h1>NHB ContentMachine</h1>
+<p class="sub">Private publishing tool for New Homes of Birmingham. Operator: Nicholas Santiago, eXp Realty, Alabama.</p>
+<div class="card" id="status"></div>
+<div class="card">
+<h2 style="margin:0 0 8px;font-size:18px">1 · Connect your TikTok account</h2>
+<p>Authorizes NHB ContentMachine to post your own short videos to your TikTok account and read their view counts. You can revoke this at any time in TikTok under Settings → Security → Manage app permissions.</p>
+<p><a class="btn" id="connect" href="#">Connect TikTok</a></p>
+</div>
+<div class="card">
+<h2 style="margin:0 0 8px;font-size:18px">2 · What happens next</h2>
+<p>Once connected, the machine on the operator's computer publishes one approved video per slot (07:30, 12:30, 18:30 Central) with its caption, and records views nightly. Nothing is posted for anyone else.</p>
+</div>
+<p class="foot"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · Nicholas Santiago · Licensed Real Estate Salesperson · eXp Realty · Alabama · Equal Housing Opportunity</p>
+<script>
+(function(){
+  var KEY = "awf9gnk7bqri229m";
+  var REDIRECT = "https://newhomesofbirmingham-bot.github.io/nhb-media/";
+  var SCOPES = "user.info.basic,user.info.stats,video.list,video.upload,video.publish";
+  var q = new URLSearchParams(location.search), st = document.getElementById("status");
+  if (q.get("code")) {
+    st.className = "card ok";
+    st.innerHTML = "<strong>TikTok authorization received.</strong> Scopes granted: <code>" + (q.get("scopes") || "") + "</code>. The machine will exchange this code for tokens on the operator's computer. You can close this tab.";
+  } else if (q.get("error")) {
+    st.innerHTML = "<strong>TikTok returned an error:</strong> <code>" + q.get("error") + "</code> " + (q.get("error_description") || "");
+  } else { st.innerHTML = "Status: <strong>not connected in this browser</strong>. Click Connect TikTok below."; }
+  var state = Math.random().toString(36).slice(2, 14);
+  document.getElementById("connect").href = "https://www.tiktok.com/v2/auth/authorize/?client_key=" + KEY + "&response_type=code&scope=" + encodeURIComponent(SCOPES) + "&redirect_uri=" + encodeURIComponent(REDIRECT) + "&state=" + state;
+})();
+</script></body></html>
