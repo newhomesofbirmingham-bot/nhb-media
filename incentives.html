@@ -17,7 +17,7 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font
 <header><div class="wrap"><h1>Birmingham New Construction Incentives</h1><p>October 2026 · updated October 21, 2026</p></div></header>
 <main>
 
-    <article class="offer">
+    <article class="offer" data-expires="2026-11-02">
       <p class="builder">D.R. Horton</p>
       <h2>Red Tag Event</h2>
       <p>Limited-time sale pricing and added offers on select move-in-ready homes.</p>
@@ -25,7 +25,7 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font
       <p class="when">Sign by November 2, 2026</p>
       <p class="src">Source: D.R. Horton agent email, 20 Oct 2026 (event runs 9 Oct - 1 Nov; contract by 2 Nov). <a href="https://www.drhorton.com/alabama/birmingham">Builder page</a></p>
     </article>
-    <article class="offer">
+    <article class="offer" data-expires="2026-11-01">
       <p class="builder">Valor Communities</p>
       <h2>$500 Moves You In</h2>
       <p>Move into select inventory homes for $500, plus a financing incentive with Valor&#x27;s preferred lenders. Ask me for the details and who qualifies.</p>
@@ -81,16 +81,22 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font
       <p class="when">Ongoing - ask for current terms</p>
       <p class="src">Source: newcastle-homes.com/homes, checked 21 Oct 2026. <a href="https://newcastle-homes.com/homes">Builder page</a></p>
     </article>
-    <article class="offer">
+    <article class="offer" data-expires="2026-12-21">
       <p class="builder">Century Communities</p>
       <h2>Hometown Heroes: up to $1,500 toward closing</h2>
       <p>Up to $1,500 toward closing costs for law enforcement, first responders, teachers, nurses and military, financing with Inspire Home Loans.</p>
       <p class="meta">Century Complete homes, Birmingham area</p>
       <p class="when">Sign by December 21, 2026</p>
       <p class="src">Source: centurycommunities.com Hometown Heroes promo, checked 21 Oct 2026. <a href="https://www.centurycommunities.com/promos/century-complete/century-complete-national/hometown-heroes/">Builder page</a></p>
-    </article>
+    </article><article class="offer" id="none-live" hidden><h2>New offers are being confirmed</h2><p>Builders change incentives often. Reply to my email or call and I'll tell you what's available this week.</p></article>
 <div class="cta"><strong>Want to know which of these fits you?</strong> Reply to my email or call me. The builder's sales rep works for the builder. I work for you.</div>
 <p class="note">Builders set these offers and can change or end them without notice. Most apply only to select homes and some require the builder's preferred lender. I confirm the current terms with the builder before you sign anything.</p>
 </main>
 <footer>Nicholas Santiago, Realtor · AL License 148232-1 · eXp Realty · Equal Housing Opportunity</footer>
+<script>
+(function(){var d=new Date(),t=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"),left=0;
+document.querySelectorAll("article[data-expires]").forEach(function(a){if(a.dataset.expires<t)a.hidden=true;});
+document.querySelectorAll("article.offer:not(#none-live)").forEach(function(a){if(!a.hidden)left++;});
+if(!left)document.getElementById("none-live").hidden=false;})();
+</script>
 </body></html>
